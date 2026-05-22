@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Fascinating Ferret | Dunia Musang Peliharaan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Poppins', 'Quicksand', system-ui, -apple-system, 'Roboto', sans-serif;
+            min-height: 100vh;
+            background: #2e241f; /* fallback warna tanah */
+            color: #2c1a12;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* BACKGROUND ILLUSTRASI FERRET (gambar ilustrasi yang natural) */
+        .hero-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: url('https://www.publicdomainpictures.net/pictures/320000/nahled/cute-ferret-illustration-1569339424fC9.jpg') no-repeat center center/cover;
+            /* fallback jika gambar utama gagal - style serupa ilustrasi ferret */
+            background-color: #d9c2a7;
+            background-blend-mode: overlay;
+            opacity: 0.35;
+        }
+
+        /* tambahan efek gradasi agar teks mudah dibaca + nuansa hutan */
+        .overlay-gradasi {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(230, 210, 170, 0.4), rgba(40, 30, 20, 0.65));
+            z-index: -1;
+        }
+
+        /* container utama */
+        .container {
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 2rem 1.8rem 5rem;
+            backdrop-filter: blur(2px);
+        }
+
+        /* kartu informasi */
+        .card {
+            background: rgba(255, 248, 235, 0.92);
+            backdrop-filter: blur(4px);
+            border-radius: 2.5rem;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.3), 0 1px 3px rgba(0,0,0,0.1);
+            padding: 1.8rem 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.2s ease, box-shadow 0.2s;
+            border: 1px solid rgba(255,215,160,0.6);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 28px 36px -14px rgba(0,0,0,0.35);
+            background: rgba(255, 250, 240, 0.96);
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #4a2e1e, #7b4a2e);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 8px rgba(255,215,150,0.3);
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: 1.9rem;
+            border-left: 8px solid #c27e4a;
+            padding-left: 1rem;
+            margin: 1.5rem 0 1rem 0;
+            color: #3b2a1f;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin: 1rem 0 0.5rem 0;
+            color: #a55d2a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        p {
+            margin-bottom: 0.9rem;
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: #2d241c;
+        }
+
+        .ferret-badge {
+            background: #e7c7a2;
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: #4b2c19;
+            margin-bottom: 1rem;
+        }
+
+        .grid-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            margin: 1.5rem 0;
+        }
+
+        .info-box {
+            flex: 1 1 240px;
+            background: #fef3e4;
+            border-radius: 2rem;
+            padding: 1.2rem;
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+        }
+
+        .info-box i {
+            font-size: 2.2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-box strong {
+            font-size: 1.2rem;
+            color: #bf6f3c;
+        }
+
+        .btn-sound {
+            background: #2b211b;
+            border: none;
+            color: #ffefcf;
+            font-size: 1.2rem;
+            padding: 0.7rem 1.6rem;
+            border-radius: 60px;
+            cursor: pointer;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: 0.2s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .btn-sound:hover {
+            background: #67472e;
+            transform: scale(1.02);
+            color: white;
+        }
+
+        .sound-panel {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #f0e2cf;
+            text-shadow: 1px 1px 2px #2a1f15;
+            font-weight: 500;
+        }
+
+        @media (max-width: 680px) {
+            .container {
+                padding: 1rem;
+            }
+            h1 {
+                font-size: 2.2rem;
+            }
+            h2 {
+                font-size: 1.6rem;
+            }
+            .card {
+                padding: 1.2rem;
+            }
+        }
+
+        /* gaya emoji / ikon sederhana */
+        .icon-em {
+            font-size: 1.4rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero-bg"></div>
+<div class="overlay-gradasi"></div>
+
+<div class="container">
+    <!-- Panel kontrol backsound -->
+    <div class="sound-panel">
+        <button id="toggleSoundBtn" class="btn-sound" aria-label="Putar/Jeda musik latar">
+            <span>🎵</span> <span id="soundStatus">Hidupkan Suasana</span>
+        </button>
+    </div>
+
+    <!-- Judul Utama -->
+    <div class="card">
+        <div class="ferret-badge">✨ Mustela Putorius Furo ✨</div>
+        <h1>🐾 Ferret · Musang Belang Imut</h1>
+        <p>Penjelajah lincah yang menggemaskan, saudara jauh dari cerpelai. Kenali asal-usul, keluarga, kebiasaan & adaptasinya!</p>
+    </div>
+
+    <!-- Asal usul & keluarga -->
+    <div class="card">
+        <h2>📜 Asal Usul & Klasifikasi</h2>
+        <p><strong>Asli mana?</strong> Ferret (<em>Mustela putorius furo</em>) dipercaya berasal dari <strong>Eropa</strong>, khususnya kawasan sekitar Mediterania. Nenek moyang liar mereka adalah <strong>Musang Eropa (European polecat)</strong>. Ferret telah didomestikasi lebih dari 2500 tahun — pertama kali digunakan di Eropa untuk berburu kelinci (pengendalian hama).</p>
+        <p><strong>Masuk dalam keluarga apa?</strong> Ferret termasuk dalam famili <strong>Mustelidae</strong> (keluarga musang). Kerabat dekatnya antara lain: cerpelai (mink), berang-berang, luak (badger), dan sigung. Mereka adalah karnivora dengan tubuh panjang ramping, ciri khas mustelid.</p>
+        <div class="grid-info">
+            <div class="info-box"><span class="icon-em">🌍</span> <strong>Asli</strong><br>Eropa Barat & Mediterania</div>
+            <div class="info-box"><span class="icon-em">🐾</span> <strong>Famili</strong><br>Mustelidae (Musang & cerpelai)</div>
+            <div class="info-box"><span class="icon-em">🧬</span> <strong>Nama Ilmiah</strong><br>Mustela putorius furo</div>
+            <div class="info-box"><span class="icon-em">⏳</span> <strong>Domestikasi</strong><br>~ 2500 tahun lalu</div>
+        </div>
+    </div>
+
+    <!-- Kebiasaan dan adaptasi -->
+    <div class="card">
+        <h2>🌿 Kebiasaan & Adaptasi Ferret</h2>
+        <p><strong>🕵️‍♂️ Kebiasaan unik:</strong> Ferret adalah hewan <strong>krepuskular</strong> (paling aktif saat fajar & senja). Mereka suka tidur hingga 18 jam per hari namun sangat energik saat bangun! Hobi utama: <strong>menggali, menyembunyikan barang, menari ferret (weasel war dance)</strong> — gerakan jungkir balik lucu tanda kegembiraan. Mereka juga pintar bersembunyi di celah sempit, karena tubuh ramping mereka beradaptasi untuk berburu di liang kelinci.</p>
+        <p><strong>🌡️ Adaptasi istimewa:</strong> Memiliki tulang belakang sangat lentur (bisa masuk ke celah selebar 2-3 cm), gigi taring tajam untuk mencengkram mangsa, dan indra penciuman tajam. Karena dijinakkan, ferret kehilangan sebagian insting liar, tapi tetap mempertahankan naluri menggali dan menimbun. Kelenjar bau di sekitar anus bisa mengeluarkan aroma menyengat saat terancam (mirip sigung tapi lebih ringan).</p>
+        <p><strong>🍽️ Makanan:</strong> Karnivora wajib — dalam peliharaan butuh pakan tinggi protein hewani (daging, telur, atau pakan ferret khusus). Tidak bisa mencerna serat nabati.</p>
+        <div style="background: #d9c29e40; border-radius: 2rem; padding: 1rem; margin-top: 1rem;">
+            <h3>🧠 Fakta Adaptasi Lainnya</h3>
+            <ul style="margin-left: 1.5rem; list-style-type: circle;">
+                <li>Mata cenderung rabun jauh tapi indra pendengar & penciuman tajam.</li>
+                <li>Kaki pendek dengan cakar kuat untuk menggali liang.</li>
+                <li>Bisa beradaptasi dengan iklim sedang hingga dingin, namun rentan panas berlebih.</li>
+                <li>Ferrets bisa diajarkan trik sederhana dan menggunakan kotak pasir.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- tambahan info menarik & gambar ilustrasi tekste -->
+    <div class="card">
+        <h2>✨ Ferret dalam Kehidupan Manusia</h2>
+        <p>Di masa lalu, ferret digunakan untuk "rabbiting" (mengusir kelinci dari lubang). Kini ferret menjadi hewan peliharaan populer di Amerika, Eropa, Jepang. Mereka sangat sosial, suka bermain dengan manusia dan ferret lain. Namun di beberapa wilayah (seperti Selandia Baru), ferret liar menjadi spesies invasif karena kemampuannya berburu satwa asli. Meski begitu, ferret domestik adalah sahabat penuh cinta dan kejenakaan.</p>
+        <p>💡 <strong>Karakter menggemaskan:</strong> Suka "mencuri" benda-benda kecil lalu menyembunyikannya di bawah sofa — hal ini adalah sisa naluri berburu dan menyimpan mangsa.</p>
+        <div style="display: flex; justify-content: center; gap: 12px; margin-top: 20px; flex-wrap: wrap;">
+            <span style="background:#f3e1c4; border-radius: 50px; padding: 5px 15px;">🎪 suka menari-nari</span>
+            <span style="background:#f3e1c4; border-radius: 50px; padding: 5px 15px;">🕳️ ahli menyelinap</span>
+            <span style="background:#f3e1c4; border-radius: 50px; padding: 5px 15px;">😴 king of sleep</span>
+            <span style="background:#f3e1c4; border-radius: 50px; padding: 5px 15px;">🐇 pemburu alami</span>
+        </div>
+    </div>
+
+    <footer>
+        🌟 Ilustrasi latar: Ferret imajinasi — informasi berdasarkan riset Mustelidae. Nikmati suara latar yang menenangkan! 🌟
+    </footer>
+</div>
+
+<script>
+    (function() {
+        // ---------------------- BACKSOUND ----------------------
+        // Membuat AudioContext untuk menghindari kebijakan autoplay modern, 
+        // tapi kita buat agar tombol user-initiated langsung memutar.
+        // Gunakan file audio dari contoh bebas royalti (freesound / pixabay) sebagai backsound yg menenangkan.
+        // Kami pilih lagu instrumental "Forest Lullaby" (sumber dari audio library open domain/CC)
+        // Menggunakan audio dari pixabay yang bebas digunakan untuk proyek kecil (asli tidak berlisensi komersial)
+        // Link: 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_8a4b5b9a2c.mp3?filename=forest-lullaby-110624.mp3'
+        // Ini adalah audio yang tenang dan cocok untuk suasana ferret.
+        let audio = null;
+        let isPlaying = false;
+        const soundBtn = document.getElementById('toggleSoundBtn');
+        const soundStatusSpan = document.getElementById('soundStatus');
+
+        // Fungsi inisialisasi audio, supaya tidak reload setiap kali
+        function initAudio() {
+            if (!audio) {
+                audio = new Audio('https://cdn.pixabay.com/download/audio/2022/05/27/audio_8a4b5b9a2c.mp3?filename=forest-lullaby-110624.mp3');
+                audio.loop = true;
+                audio.volume = 0.4;  // volume latar tidak mengganggu
+                // preload
+                audio.preload = 'auto';
+                // untuk handle error jika jaringan bermasalah
+                audio.onerror = () => {
+                    console.warn("Gagal memuat backsound, coba sumber alternatif.");
+                    // fallback ke audio lain dari archive.org (contoh sederhana)
+                    if (audio.src.includes('pixabay')) {
+                        audio.src = 'https://upload.wikimedia.org/wikipedia/commons/transcoded/8/86/Short_ferret_chirping.ogg/Short_ferret_chirping.ogg.mp3';
+                        audio.loop = true;
+                        audio.volume = 0.3;
+                    }
+                };
+            }
+        }
+
+        // Fungsi untuk memulai audio (butuh interaksi user)
+        function playSound() {
+            if (!audio) initAudio();
+            audio.play().then(() => {
+                isPlaying = true;
+                soundStatusSpan.innerText = "Suasana Ferret ♪";
+                if(soundBtn) soundBtn.style.background = "#5a3c28";
+            }).catch(err => {
+                console.log("Autoplay dicegah browser? user perlu interaksi lagi: ", err);
+                isPlaying = false;
+                soundStatusSpan.innerText = "Klik izinkan dulu";
+                // tetap set state false
+            });
+        }
+
+        function pauseSound() {
+            if (audio) {
+                audio.pause();
+                isPlaying = false;
+                soundStatusSpan.innerText = "Hidupkan Suasana";
+                if(soundBtn) soundBtn.style.background = "#2b211b";
+            }
+        }
+
+        function toggleSound() {
+            if (!audio) initAudio();
+            // cek status
+            if (isPlaying) {
+                pauseSound();
+            } else {
+                playSound();
+            }
+        }
+
+        // Event listener untuk tombol
+        if (soundBtn) {
+            soundBtn.addEventListener('click', toggleSound);
+        }
+
+        // opsional: jika pengguna pernah berinteraksi dengan halaman (klik di mana saja), 
+        // namun tidak otomatis memutar. Kita hanya mengandalkan tombol.
+        // Untuk meningkatkan pengalaman, kita bisa pre-load audio ketika halaman dimuat.
+        // TAPI tidak memutar sampai user klik.
+        window.addEventListener('load', () => {
+            initAudio();
+            // siapkan audio tanpa autoplay
+            console.log("Web ferret siap, klik tombol backsound untuk memulai musik latar ilustrasi ferret");
+        });
+
+        // Opsional: agar musik tidak berhenti ketika tab tidak aktif, biasa saja, biarkan default
+        // tetapi jika perlu pause saat halaman disembunyikan tidak perlu.
+
+        // ---------------------- SMOOTH SCROLL & INTERAKSI TAMBAHAN ----------------------
+        // efek kecil: menambahkan tooltip atau animasi pada info-box (opsional)
+        const infoBoxes = document.querySelectorAll('.info-box');
+        infoBoxes.forEach(box => {
+            box.addEventListener('mouseenter', (e) => {
+                box.style.transform = 'scale(1.02)';
+                box.style.transition = '0.2s';
+            });
+            box.addEventListener('mouseleave', () => {
+                box.style.transform = 'scale(1)';
+            });
+        });
+
+        // elemen tambahan: menampilkan pesan sapa di console
+        console.log("%c🐾 WELCOME TO FERRET WORLD! Pelajari asal usul, keluarga mustelidae, kebiasaan ngiler lucu 🐾", "color: #bd7a3a; font-size: 16px; font-weight: bold;");
+
+        // jika pengguna menggulir ke bagian tertentu (efek tiny)
+        const cards = document.querySelectorAll('.card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0px)';
+                } else {
+                    // tidak perlu diubah agar tetap smooth, namun kita set style awal? 
+                    // lebih baik hanya sekali muncul
+                }
+            });
+        }, { threshold: 0.1 });
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.4s ease';
+            observer.observe(card);
+        });
+        // panggil sedikit timeout untuk initial load agar langsung muncul
+        setTimeout(() => {
+            cards.forEach(card => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0px)';
+            });
+        }, 200);
+    })();
+</script>
+</body>
+</html>
